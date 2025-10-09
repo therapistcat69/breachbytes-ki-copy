@@ -1,0 +1,118 @@
+/* Leaderboard.css */
+
+/* Pirate Font */
+@import url('https://fonts.googleapis.com/css2?family=IM+Fell+English+SC&display=swap');
+
+/* SVG Icon Styling */
+.leaderboard-icon {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  z-index: 1000;
+}
+
+.leaderboard-icon:hover {
+  transform: scale(1.1) rotate(5deg);
+}
+
+/* Leaderboard Modal Styling */
+.leaderboard-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1001;
+}
+
+.leaderboard-content {
+  background-image: url('/scroll.svg');
+  background-size: 100% 100%; /* Make SVG fill the container */
+  background-position: center;
+  background-repeat: no-repeat;
+  
+  /* --- CHANGED: Responsive Sizing --- */
+  /* This makes the leaderboard scale with the browser window */
+  width: 80vw; /* It will take up 80% of the viewport width */
+  height: 45vw; /* This maintains the 16:9 aspect ratio (80 * 9 / 16 = 45) */
+
+  /* --- CHANGED: Size Constraints --- */
+  /* This prevents it from getting too big or too small */
+  max-width: 1280px;
+  max-height: 720px;
+  min-width: 480px;
+  min-height: 270px;
+  
+  /* --- Core Styles --- */
+  font-family: 'IM Fell English SC', serif;
+  color: #4a2c2a;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  
+  /* --- CHANGED: Responsive Padding --- */
+  /* Padding now scales with the size of the scroll */
+  padding: 5% 8%;
+}
+
+.close-button {
+  /* Positioning */
+  position: absolute;
+  top: 5%;
+  right: 3%;
+  
+  /* NEW: Added a background circle to make it stand out */
+  background-color: rgba(143, 100, 0, 0.7); /* Semi-transparent dark red */
+  border: 2px solid rgba(255, 255, 255, 0.7); /* Faint white border */
+  border-radius: 50%; /* Makes it a circle */
+
+  /* NEW: Explicit dimensions and centering for the 'X' */
+  width: clamp(35px, 4vw, 50px);
+  height: clamp(35px, 4vw, 50px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  /* NEW: Changed color to white for high contrast */
+  color: white;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); /* Adds depth */
+
+  /* Other styles */
+  font-size: clamp(1.5rem, 3vw, 2.5rem);
+  cursor: pointer;
+  line-height: 1;
+  transition: background-color 0.2s ease;
+}
+
+/* NEW: Added a hover effect for better feedback */
+.close-button:hover {
+  background-color: rgba(180, 0, 0, 0.9); /* Brighter red on hover */
+}
+
+h2 {
+  /* --- CHANGED: Responsive Font Size --- */
+  font-size: clamp(1.5rem, 3.5vw, 3rem); /* Adapts to container size */
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  padding: 10px;
+  text-align: left;
+  /* --- CHANGED: Responsive Font Size --- */
+  font-size: clamp(0.8rem, 1.8vw, 1.5rem); /* Adapts to container size */
+}
