@@ -1,4 +1,3 @@
-
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
@@ -92,7 +91,7 @@ const Ocean = () => {
     moonHaloRef.current = moonHalo;
 
     // --- Stars Particle System ---
-    const starsCount = 800; // **REDUCED STAR COUNT**
+    const starsCount = 600; // **FINAL STAR COUNT**
     const starsGeo = new THREE.BufferGeometry();
     const starPositions = new Float32Array(starsCount * 3);
     const starColors = new Float32Array(starsCount * 3);
@@ -102,9 +101,10 @@ const Ocean = () => {
     for (let i = 0; i < starsCount; i++) {
       const i3 = i * 3;
       const vertex = new THREE.Vector3();
+      // **Stars positioned in upper hemisphere to reduce reflection**
       vertex.setFromSphericalCoords(
         6000 + Math.random() * 1000,
-        Math.acos(2 * Math.random() - 1),
+        Math.acos(Math.random()), // This ensures stars are only in the upper hemisphere
         2 * Math.PI * Math.random()
       );
       starPositions[i3] = vertex.x;
@@ -233,18 +233,18 @@ const Ocean = () => {
         azimuth: 180,
       },
       sunset: {
-        turbidity: 20,         // **BRIGHTER SUNSET**
-        rayleigh: 4,           // **BRIGHTER SUNSET**
+        turbidity: 15,       // **ADJUSTED to remove dark shades**
+        rayleigh: 3.5,       // **ADJUSTED for purer orange-red color**
         mieCoefficient: 0.005,
-        mieDirectionalG: 0.95, // **BRIGHTER SUNSET**
+        mieDirectionalG: 0.8, // Softened the sun's glow
         elevation: 2,
         azimuth: 180,
       },
       night: {
-        turbidity: 0,
-        rayleigh: 0,
-        mieCoefficient: 0,
-        mieDirectionalG: 0,
+        turbidity: 0.1,
+        rayleigh: 0.0,
+        mieCoefficient: 0.0,
+        mieDirectionalG: 0.0,
         elevation: -90,
         azimuth: 180,
       },
@@ -283,8 +283,8 @@ const Ocean = () => {
       }
 
       if (state === 'sunset' && water.material.uniforms['sunColor']) {
-        water.material.uniforms['sunColor'].value.setHex(0xff6a00); // **BRIGHTER ORANGE**
-        water.material.uniforms['sunColor'].value.multiplyScalar(2.5); // **INCREASED BRIGHTNESS**
+        water.material.uniforms['sunColor'].value.setHex(0xff5e1a); // **BRIGHTER reddish-orange**
+        water.material.uniforms['sunColor'].value.multiplyScalar(3.0); // **BOOSTED brightness**
       }
 
       if (state === 'night' && water.material.uniforms['sunColor']) {
@@ -303,7 +303,7 @@ const Ocean = () => {
     const intervalId = setInterval(() => {
       currentIndex = (currentIndex + 1) % weatherCycle.length;
       setWeather(weatherCycle[currentIndex]);
-    }, 40000); // Cycle every 5 minutes
+    }, 40000); // **UPDATED** Cycle every 40 seconds
 
     return () => clearInterval(intervalId);
   }, []);
@@ -312,3 +312,4 @@ const Ocean = () => {
 };
 
 export default Ocean;
+
