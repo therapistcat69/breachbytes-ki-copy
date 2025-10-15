@@ -16,9 +16,9 @@ const Leaderboard = () => {
 
   // Fetch leaderboard data when the component mounts
   useEffect(() => {
-    fetch('/leaderboardData.json')
+    fetch('/Data.json')
       .then((res) => res.json())
-      .then((data) => setTeams(data));
+      .then((data) => setTeams(data.leaderboard || []));
   }, []);
 
   const toggleLeaderboard = () => {
@@ -44,7 +44,7 @@ const Leaderboard = () => {
             <button className="close-button" onClick={toggleLeaderboard}>
               &times;
             </button>
-            <h2>Captain's Log: CTF Rankings</h2>
+            <h2>Captain&apos;s Log: CTF Rankings</h2>
             <table>
               <thead>
                 <tr>

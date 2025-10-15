@@ -1,0 +1,98 @@
+{
+  "leaderboard": [
+    {
+      "rank": 1,
+      "teamName": "Blackpearl",
+      "totalPoints": 1850
+    },
+    {
+      "rank": 2,
+      "teamName": "Flying Dutchman",
+      "totalPoints": 1620
+    },
+    {
+      "rank": 3,
+      "teamName": "Kraken's Crew",
+      "totalPoints": 1490
+    },
+    {
+      "rank": 4,
+      "teamName": "The Sea Serpents",
+      "totalPoints": 1350
+    },
+    {
+      "rank": 5,
+      "teamName": "Calypso's Chosen",
+      "totalPoints": 1280
+    }
+  ],
+  "teamDetails": {
+    "TeamName": "Team Alpha",
+    "DomainWiseLeaderBoardData": [
+      {
+        "Domain": "Overall",
+        "Topper": 500,
+        "Individual": 280,
+        "color": "yellow",
+        "total": 700,
+        "icon": "/icons/crown.webp"
+      },
+      {
+        "Domain": "Domain 1",
+        "Topper": 20,
+        "Individual": 10,
+        "color": "yellow",
+        "total": 100,
+        "icon": "/icons/swords.png"
+      },
+      {
+        "Domain": "Domain 2",
+        "Topper": 30,
+        "Individual": 20,
+        "color": "pink",
+        "total": 100,
+        "icon": "/icons/flag.webp"
+      },
+      {
+        "Domain": "Domain 3",
+        "Topper": 40,
+        "Individual": 30,
+        "color": "purple",
+        "total": 100,
+        "icon": "/icons/hat.png"
+      },
+      {
+        "Domain": "Domain 4",
+        "Topper": 50,
+        "Individual": 40,
+        "color": "red",
+        "total": 100,
+        "icon": "/icons/flag.webp"
+      },
+      {
+        "Domain": "Domain 5",
+        "Topper": 60,
+        "Individual": 50,
+        "color": "green",
+        "total": 100,
+        "icon": "/icons/hat.png"
+      },
+      {
+        "Domain": "Domain 6",
+        "Topper": 70,
+        "Individual": 60,
+        "color": "orange",
+        "total": 100,
+        "icon": "/icons/swords.png"
+      },
+      {
+        "Domain": "Domain 7",
+        "Topper": 80,
+        "Individual": 70,
+        "color": "blue",
+        "total": 100,
+        "icon": "/icons/flag.webp"
+      }
+    ]
+  }
+}
