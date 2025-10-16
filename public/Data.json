@@ -2,28 +2,53 @@
   "leaderboard": [
     {
       "rank": 1,
-      "teamName": "Blackpearl",
-      "totalPoints": 1850
+      "name": "Blackpearl",
+      "score": 1850
     },
     {
       "rank": 2,
-      "teamName": "Flying Dutchman",
-      "totalPoints": 1620
+      "name": "Flying Dutchman",
+      "score": 1620
     },
     {
       "rank": 3,
-      "teamName": "Kraken's Crew",
-      "totalPoints": 1490
+      "name": "Kraken's Crew",
+      "score": 1490
     },
     {
       "rank": 4,
-      "teamName": "The Sea Serpents",
-      "totalPoints": 1350
+      "name": "The Sea Serpents",
+      "score": 1350
     },
     {
       "rank": 5,
-      "teamName": "Calypso's Chosen",
-      "totalPoints": 1280
+      "name": "Calypso's Chosen",
+      "score": 1280
+    },
+    {
+      "rank": 6,
+      "name": "The Tidal Scourge",
+      "score": 1150
+    },
+    {
+      "rank": 7,
+      "name": "Neptune's Wrath",
+      "score": 1040
+    },
+    {
+      "rank": 8,
+      "name": "Siren's Song",
+      "score": 980
+    },
+    {
+      "rank": 9,
+      "name": "The Crimson Armada",
+      "score": 850
+    },
+    {
+      "rank": 10,
+      "name": "Ghostly Galleon",
+      "score": 720
     }
   ],
   "teamDetails": {
@@ -96,3 +121,4 @@
     ]
   }
 }
+

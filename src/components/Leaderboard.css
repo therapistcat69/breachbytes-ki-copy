@@ -3,7 +3,7 @@
 /* Pirate Font */
 @import url('https://fonts.googleapis.com/css2?family=IM+Fell+English+SC&display=swap');
 
-/* SVG Icon Styling */
+/* Default styles */
 .leaderboard-icon {
   position: fixed;
   bottom: 20px;
@@ -17,7 +17,6 @@
   transform: scale(1.1) rotate(5deg);
 }
 
-/* Leaderboard Modal Styling */
 .leaderboard-modal {
   position: fixed;
   top: 0;
@@ -27,92 +26,158 @@
   background-color: rgba(0, 0, 0, 0.7);
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
+  padding-top: 3vh; 
   z-index: 1001;
+  box-sizing: border-box; 
 }
 
 .leaderboard-content {
   background-image: url('/scroll.svg');
-  background-size: 100% 100%; /* Make SVG fill the container */
+  background-size: 100% 100%;
   background-position: center;
   background-repeat: no-repeat;
-  
-  /* --- CHANGED: Responsive Sizing --- */
-  /* This makes the leaderboard scale with the browser window */
-  width: 80vw; /* It will take up 80% of the viewport width */
-  height: 45vw; /* This maintains the 16:9 aspect ratio (80 * 9 / 16 = 45) */
-
-  /* --- CHANGED: Size Constraints --- */
-  /* This prevents it from getting too big or too small */
+  width: 80vw;
+  height: 50vw; 
   max-width: 1280px;
-  max-height: 720px;
+  max-height: 800px;
   min-width: 480px;
   min-height: 270px;
-  
-  /* --- Core Styles --- */
   font-family: 'IM Fell English SC', serif;
   color: #4a2c2a;
   position: relative;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
-  
-  /* --- CHANGED: Responsive Padding --- */
-  /* Padding now scales with the size of the scroll */
-  padding: 5% 8%;
+  padding: 12% 8% 8%; 
 }
 
 .close-button {
-  /* Positioning */
   position: absolute;
-  top: 5%;
-  right: 3%;
-  
-  /* NEW: Added a background circle to make it stand out */
-  background-color: rgba(143, 100, 0, 0.7); /* Semi-transparent dark red */
-  border: 2px solid rgba(255, 255, 255, 0.7); /* Faint white border */
-  border-radius: 50%; /* Makes it a circle */
-
-  /* NEW: Explicit dimensions and centering for the 'X' */
+  top: 10%;
+  right: 4%;
+  background-color: rgba(139, 0, 0, 0.7);
+  border: 2px solid rgba(255, 255, 255, 0.7);
+  border-radius: 50%;
   width: clamp(35px, 4vw, 50px);
   height: clamp(35px, 4vw, 50px);
   display: flex;
   align-items: center;
   justify-content: center;
-  
-  /* NEW: Changed color to white for high contrast */
   color: white;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); /* Adds depth */
-
-  /* Other styles */
   font-size: clamp(1.5rem, 3vw, 2.5rem);
   cursor: pointer;
-  line-height: 1;
-  transition: background-color 0.2s ease;
-}
-
-/* NEW: Added a hover effect for better feedback */
-.close-button:hover {
-  background-color: rgba(180, 0, 0, 0.9); /* Brighter red on hover */
+  z-index: 10;
 }
 
 h2 {
-  /* --- CHANGED: Responsive Font Size --- */
-  font-size: clamp(1.5rem, 3.5vw, 3rem); /* Adapts to container size */
-  margin-bottom: 20px;
+  position: absolute;
+  top: 12%; 
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: clamp(1.5rem, 3.5vw, 3rem);
   text-align: center;
+  width: 100%;
 }
 
-table {
+.table-wrapper {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.leaderboard-table {
   width: 100%;
   border-collapse: collapse;
 }
 
-th,
-td {
-  padding: 10px;
-  text-align: left;
-  /* --- CHANGED: Responsive Font Size --- */
-  font-size: clamp(0.8rem, 1.8vw, 1.5rem); /* Adapts to container size */
+.leaderboard-table th {
+  font-size: clamp(1.1rem, 2.2vw, 1.6rem);
+  padding-bottom: 10px;
+  color: #3a1c1a;
+  font-weight: bold;
 }
+
+.leaderboard-table td {
+  font-size: clamp(1.1rem, 2.2vw, 1.6rem); 
+  padding: 10px 5px;
+  text-align: center; 
+  vertical-align: middle;
+}
+
+.leaderboard-table th:nth-child(2),
+.leaderboard-table td:nth-child(2) {
+  text-align: left;
+  padding-left: 15px;
+}
+
+.leaderboard-table thead {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+}
+
+.leaderboard-table tbody.scrollable-tbody {
+  display: block;
+  flex-grow: 1; 
+  overflow-y: auto;
+  border: 2px solid rgba(50, 32, 0, 0.6);
+  border-radius: 15px;
+  padding: 5px;
+  max-height: 350px;
+}
+
+.leaderboard-table tbody.scrollable-tbody tr {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+}
+
+/* Styles for the wooden log container */
+.my-team-log-container {
+  width: 100%;
+  height: 8vw; 
+  min-height: 80px;
+  max-height: 120px;
+  background-image: url('/wooden-log.svg');
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  margin-top: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 35px; 
+  color: white;
+  font-size: clamp(1.4rem, 2.5vw, 2rem);
+  font-weight: bold;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+}
+
+.log-rank {
+  text-align: right;
+  flex-basis: 15%;
+}
+.log-name {
+  text-align: center;
+  flex-grow: 1;
+  padding-left: 8px;
+}
+.log-score {
+  text-align: center;
+  flex-basis: 27%;
+}
+
+/* Custom Scrollbar */
+.scrollable-tbody::-webkit-scrollbar {
+  width: 10px;
+}
+.scrollable-tbody::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+}
+.scrollable-tbody::-webkit-scrollbar-thumb {
+  background: #4a2c2a;
+  border-radius: 10px;
+}
+
