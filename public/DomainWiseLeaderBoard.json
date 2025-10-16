@@ -1,0 +1,71 @@
+{
+"teamDetails": {
+    "TeamName": "Team Alpha",
+    "DomainWiseLeaderBoardData": [
+      {
+        "Domain": "Overall",
+        "Topper": 500,
+        "Individual": 280,
+        "color": "yellow",
+        "total": 700,
+        "icon": "/icons/treasure.png"
+      },
+      {
+        "Domain": "Domain 1",
+        "Topper": 20,
+        "Individual": 10,
+        "color": "blue",
+        "total": 100,
+        "icon": "/icons/swords.png"
+      },
+      {
+        "Domain": "Domain 2",
+        "Topper": 30,
+        "Individual": 20,
+        "color": "blue",
+        "total": 100,
+        "icon": "/icons/flag.webp"
+      },
+      {
+        "Domain": "Domain 3",
+        "Topper": 40,
+        "Individual": 30,
+        "color": "blue",
+        "total": 100,
+        "icon": "/icons/hat.png"
+      },
+      {
+        "Domain": "Domain 4",
+        "Topper": 50,
+        "Individual": 40,
+        "color": "blue",
+        "total": 100,
+        "icon": "/icons/flag.webp"
+      },
+      {
+        "Domain": "Domain 5",
+        "Topper": 60,
+        "Individual": 50,
+        "color": "blue",
+        "total": 100,
+        "icon": "/icons/hat.png"
+      },
+      {
+        "Domain": "Domain 6",
+        "Topper": 70,
+        "Individual": 60,
+        "color": "blue",
+        "total": 100,
+        "icon": "/icons/swords.png"
+      },
+      {
+        "Domain": "Domain 7",
+        "Topper": 80,
+        "Individual": 70,
+        "color": "blue",
+        "total": 100,
+        "icon": "/icons/flag.webp"
+      }
+    ]
+  }
+}

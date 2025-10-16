@@ -1,7 +1,7 @@
 'use client'
 import { useState, useEffect, useRef } from "react";
 import Image from 'next/image'
-import data from '../../public/Data.json';
+import data from '../../public/DomainWiseLeaderBoard.json';
 
 type DomainItem = {
     Domain: string;
@@ -79,39 +79,41 @@ export function DomainWiseLeaderBoard() {
     return (
         <>
             {!click && <>
-                <div className="fixed w-[496px] h-[150px] bg-no-repeat top-1 right-5 bg-white-300 z-[1000] cursor-pointer" onClick={() => setClick(!click)} style={{ fontFamily: "'IM Fell English SC', serif" }}>
-                    <div className="ml-25 mt-5">
-                        <p className="text-blue font-bold text-6xl">{TeamName}</p>
-                        <p className="text-blue font-bold text-3xl mt-1.5">Your Score: {DomainWiseLeaderBoardData[0].Individual}</p>
-                    </div>
-                </div>
-                <div className="fixed top-40 right-5 w-[496px] h-6 bg-gray-400 rounded-lg shadow-2xl cursor-pointer z-[1000]" onClick={() => setClick(!click)} style={{ fontFamily: "'IM Fell English SC', serif" }}>
-                    <div
-                        className={`h-6 rounded-lg absolute top-0 left-0 transition-all duration-700 ease-out`}
-                        style={{
-                            width: mounted ? `${DomainWiseLeaderBoardData[0].Topper / DomainWiseLeaderBoardData[0].total * 100}%` : '0%',
-                            backgroundColor: colorMap[DomainWiseLeaderBoardData[0].color]?.light || '#e5e7eb'
-                        }}
-                    ></div>
-                    <div
-                        className={`h-6 rounded-lg absolute flex justify-end top-0 left-0 transition-all duration-700 ease-out z-10`}
-                        style={{
-                            width: mounted ? `${DomainWiseLeaderBoardData[0].Individual / DomainWiseLeaderBoardData[0].total * 100}%` : '0%',
-                            backgroundColor: colorMap[DomainWiseLeaderBoardData[0].color]?.dark || '#f59e0b'
-                        }}
-                    ></div>
-                    {DomainWiseLeaderBoardData[0].icon && (
-                        <div style={{ position: 'absolute', left: `${percent(DomainWiseLeaderBoardData[0].Individual, DomainWiseLeaderBoardData[0].total)}%`, top: '50%', transform: 'translate(-50%,-50%)',zIndex:11 }}>
-                            <Image src={DomainWiseLeaderBoardData[0].icon.startsWith('/') ? DomainWiseLeaderBoardData[0].icon : `/${DomainWiseLeaderBoardData[0].icon}`} alt={`${DomainWiseLeaderBoardData[0].Domain} icon`} width={50} height={50} />
+                <div className="fixed top-1 right-5 z-[1000] cursor-pointer w-[340px] h-[130px] bg-no-repeat bg-center bg-cover" onClick={() => setClick(!click)} style={{ fontFamily: "'IM Fell English SC', serif" }}>
+                    <div className="mx-12 mt-6">
+                        <div className="bg-[url('/team1.svg')] bg-cover bg-center w-70 transform transition-transform duration-200 hover:scale-105">
+                            <p className="text-blue font-bold mx-12 text-4xl transform transition-transform text-white duration-200 hover:scale-105">{TeamName}</p>
                         </div>
-                    )}
+                        <div className="fixed top-19 right-10 w-[300px] h-6 bg-gray-400 rounded-lg shadow-2xl z-[1000] transform transition-transform duration-200 hover:scale-105" style={{ fontFamily: "'IM Fell English SC', serif" }}>
+                            <div
+                                className={`h-6 rounded-lg absolute top-0 left-0 transition-all duration-700 ease-out`}
+                                style={{
+                                    width: mounted ? `${DomainWiseLeaderBoardData[0].Topper / DomainWiseLeaderBoardData[0].total * 100}%` : '0%',
+                                    backgroundColor: colorMap[DomainWiseLeaderBoardData[0].color]?.light || '#e5e7eb'
+                                }}
+                            ></div>
+                            <div
+                                className={`h-6 rounded-lg absolute flex justify-end top-0 left-0 transition-all duration-700 ease-out z-10`}
+                                style={{
+                                    width: mounted ? `${DomainWiseLeaderBoardData[0].Individual / DomainWiseLeaderBoardData[0].total * 100}%` : '0%',
+                                    backgroundColor: colorMap[DomainWiseLeaderBoardData[0].color]?.dark || '#f59e0b'
+                                }}
+                            ></div>
+                            {DomainWiseLeaderBoardData[0].icon && (
+                                <div style={{ position: 'absolute', left: `${percent(DomainWiseLeaderBoardData[0].Individual, DomainWiseLeaderBoardData[0].total)}%`, top: '30%', transform: 'translate(-50%,-50%)', zIndex: 11 }}>
+                                    <Image src={DomainWiseLeaderBoardData[0].icon.startsWith('/') ? DomainWiseLeaderBoardData[0].icon : `/${DomainWiseLeaderBoardData[0].icon}`} alt={`${DomainWiseLeaderBoardData[0].Domain} icon`} width={50} height={50} />
+                                </div>
+                            )}
+                        </div>
+                        {/*<p className="text-blue font-bold text-2xl mt-10">Your Score: {DomainWiseLeaderBoardData[0].Individual}</p>*/}
+                    </div>
                 </div>
             </>}
             {click &&
                 <>
                     <div ref={popupRef} className={`fixed top-1 right-5 bg-[url('/scroll.jpg')] shadow-2xl text-black p-3 w-[500px] h-[720px] bg-no-repeat z-[1000] rounded-lg transform transition-transform duration-500 ${click ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'}`} style={{ fontFamily: "'IM Fell English SC', serif" }}>
                         <p className="font-bold text-xl mx-25">The Plank — Domain Standings</p>
-                        <button className="absolute border-solid border-red border-2 w-7 h-7 rounded-[50%] p-0.5 top-1 right-2 text-red-500 hover:text-white hover:bg-[rgba(255,0,0,0.5)] m-3" onClick={() => setClick(false)}>&times;</button>
+                        <button className="absolute border-solid border-white border-2 w-7 h-7 rounded-[50%] p-0.5 top-1 right-2 text-white hover:text-white hover:bg-[rgba(255,0,0,0.5)] m-3" onClick={() => setClick(false)}>&times;</button>
                         <div className="grid grid-cols-1 grid-rows-8">
                             {DomainWiseLeaderBoardData &&
                                 DomainWiseLeaderBoardData.slice(1).map((domain, index) => {
@@ -163,7 +165,7 @@ export function DomainWiseLeaderBoard() {
                                         }}
                                     ></div>
                                     {DomainWiseLeaderBoardData[0].icon && (
-                                        <div style={{ position: 'absolute', left: `${percent(DomainWiseLeaderBoardData[0].Individual, DomainWiseLeaderBoardData[0].total)}%`, top: '50%', transform: 'translate(-50%,-50%)', zIndex: 11 }}>
+                                        <div style={{ position: 'absolute', left: `${percent(DomainWiseLeaderBoardData[0].Individual, DomainWiseLeaderBoardData[0].total)}%`, top: '30%', transform: 'translate(-50%,-50%)', zIndex: 11 }}>
                                             <Image src={DomainWiseLeaderBoardData[0].icon.startsWith('/') ? DomainWiseLeaderBoardData[0].icon : `/${DomainWiseLeaderBoardData[0].icon}`} alt={`${DomainWiseLeaderBoardData[0].Domain} icon`} width={50} height={50} />
                                         </div>
                                     )}
