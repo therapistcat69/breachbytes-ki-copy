@@ -3,6 +3,7 @@ import { useState } from "react"; // Import useState
 import Leaderboard from "@/components/Leaderboard";
 import { DomainWiseLeaderBoard } from "@/components/DomainWiseLeaderBoard";
 import dynamic from "next/dynamic";
+import NavIcon from "./NavIcon";
 const OceanScene = dynamic(() => import("@/components/Ocean"), { ssr: false });
 
 export default function Homes() {
@@ -22,6 +23,7 @@ export default function Homes() {
         <>
           <DomainWiseLeaderBoard />
           <Leaderboard />
+          <NavIcon/>
         </>
       )}
     </main>

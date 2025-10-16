@@ -14,3 +14,168 @@ body {
   overflow: hidden;
   background-color: #000;
 }
+
+
+
+
+/* The parrot icon that opens the map. */
+.map-icon {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  cursor: pointer;
+  z-index: 9999; /* High z-index to stay on top of page content */
+  transition: transform 0.2s ease-in-out;
+}
+
+.map-icon:hover {
+  transform: scale(1.1);
+}
+
+/* The full-screen overlay container. */
+.map-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10000; /* Ensures the map is above the page content */
+}
+
+/* The X close button. */
+/* --- The X Close Button (Base Style) --- */
+/* --- The X Close Button (Base Style: Transparent) --- */
+.map-close-button {
+  position: absolute;
+  top: 45px;
+  right: 170px;
+  
+  /* --- KEY CHANGES --- */
+  background-color: transparent; /* Makes the button's background invisible */
+  color: white;                    /* Makes the 'X' symbol white and visible */
+  border: 2px solid white;         /* A white border to see the button's outline */
+  
+  /* Other styles */
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  font-size: 30px;
+  cursor: pointer;
+  z-index: 10002;
+  transition: all 0.2s ease-in-out; /* For a smooth hover effect */
+}
+
+/* --- The Hover Effect (Turns Red) --- */
+.map-close-button:hover {
+  background-color: rgb(152, 2, 2); /* The dark red from your previous code */
+  border-color: rgb(16, 15, 15);    /* The black border from your previous code */
+  transform: scale(1.1);            /* Optional: makes it slightly larger */
+}
+
+/* The container for the map image and points. */
+.map-container {
+  position: relative;
+  width: 90%;
+  height: 90%;
+  max-width: 1200px;
+}
+
+/* The background map image itself. */
+.background-map {
+  /* CRITICAL CHANGE: Forces the map to the bottom layer */
+  z-index: 1;
+}
+
+/* Each clickable point (island) on the map. */
+.map-point {
+  position: absolute;
+  width: 8%;
+  /* CRITICAL CHANGE: Gives the container a height for the image to fill */
+  height: 8%;
+  cursor: pointer;
+  /* CRITICAL CHANGE: Places islands on top of the background map */
+  z-index: 2;
+  transition: transform 0.2s ease-in-out;
+}
+
+.map-point:hover {
+  transform: scale(1.2);
+  filter: drop-shadow(0 0 10px gold);
+}
+
+
+
+
+.point-title {
+  /* Positioning */
+  position: absolute;
+  bottom: -40px; /* Position it slightly below the icon */
+  left: 50%;
+  transform: translateX(-50%); /* Horizontally center the title */
+  
+  /* Appearance */
+  background-color: beige; /* Beige background highlight */
+  color: black;            /* Black text color */
+  padding: 3px 10px;       /* Add some space around the text */
+  border-radius: 5px;      /* Rounded corners */
+  white-space: nowrap;     /* Prevent title from wrapping to a new line */
+  font-size: 1rem;         /* Starting font size */
+  
+  /* Animation */
+  transition: all 0.2s ease-in-out;
+}
+
+/* Make the title larger on hover */
+.map-point:hover .point-title {
+  font-size: 1.3rem; /* Increase font size */
+  transform: translateX(-50%) translateY(10px); /* Nudge it down slightly */
+}
+
+
+
+
+.point-title {
+  /* Positioning */
+  position: absolute;
+  left: 50%;
+  bottom: -30px; /* Start position for the animation (closer to the icon) */
+  transform: translateX(-50%); /* Horizontally center the title */
+  
+  /* Appearance */
+  background-color: transparent;
+  color: rgb(0, 0, 0);
+  padding: 4px 12px; /* Slightly more padding */
+  border-radius: 5px;
+  white-space: nowrap;
+  font-size: 1rem;
+  
+  /* --- KEY CHANGES --- */
+  opacity: 0;          /* Make it invisible */
+  visibility: hidden;  /* Hide it completely */
+  
+  /* Animation */
+  transition: all 0.2s ease-in-out;
+}
+
+/* --- The Island Title (Hover State: Visible) --- */
+.map-point:hover .point-title {
+  /* --- KEY CHANGES --- */
+  opacity: 1;          /* Make it fully visible */
+  visibility: visible;
+  
+  /* Final position and size */
+  font-size: 1.3rem;
+  bottom: -45px; /* Move it down to its final resting place */
+}
+
+
+.map-decoration {
+  position: absolute;
+  z-index: 1; /* Places it on top of the map, but below clickable islands */
+  pointer-events: none; /* This makes the image non-clickable */
+}
+
