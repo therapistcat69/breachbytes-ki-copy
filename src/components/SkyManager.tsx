@@ -12,13 +12,14 @@ interface SkyManagerProps {
   water: Water | null;
 }
 
-const lerp = (a: number, b: number, t: number) => a + (b - a) * t;
-const clamp = (x: number, min: number, max: number) => Math.min(Math.max(x, min), max);
+const lerp = (a: number, b: number, t: number): number => a + (b - a) * t;
+const clamp = (x: number, min: number, max: number): number =>
+  Math.min(Math.max(x, min), max);
 
 const getStateForCurrentTime = (): WeatherState => {
   const hour = new Date().getHours();
-  if (hour >= 8 && hour < 14) return 'Morning';
-  if (hour >= 14 && hour < 21) return 'Evening';
+  if (hour >= 8 && hour < 12) return 'Morning';
+  if (hour >= 12 && hour < 18) return 'Evening';
   return 'Night';
 };
 
@@ -34,19 +35,21 @@ const SkyManager = ({ scene, water }: SkyManagerProps) => {
   useEffect(() => {
     if (!scene) return;
 
+    // Initialize sun position vector
     const sun = new THREE.Vector3();
     sunRef.current = sun;
 
+    // Add procedural sky
     const sky = new Sky();
     sky.scale.setScalar(10000);
     scene.add(sky);
     skyRef.current = sky;
 
-    // --- Add Ambient Light (for emissive sun glow)
+    // Add ambient light for overall scene illumination
     const ambientLight = new THREE.AmbientLight(0xffffff, 0.2);
     scene.add(ambientLight);
 
-    // --- Visible Sun Sphere (Standard Material supports emissive) ---
+    // Create visible sun as a glowing sphere
     const sunGeometry = new THREE.SphereGeometry(200, 32, 32);
     const sunMaterial = new THREE.MeshStandardMaterial({
       color: 0xffdd66,
@@ -57,7 +60,7 @@ const SkyManager = ({ scene, water }: SkyManagerProps) => {
     scene.add(sunMesh);
     sunMeshRef.current = sunMesh;
 
-    // --- Moon ---
+    // Load and add moon sprite
     const loader = new THREE.TextureLoader();
     const moonTex = loader.load('/textures/moon.png');
     const moonMat = new THREE.SpriteMaterial({
@@ -71,15 +74,15 @@ const SkyManager = ({ scene, water }: SkyManagerProps) => {
     scene.add(moon);
     moonRef.current = moon;
 
-    // --- Stars ---
-    const starsCount = 300;
+    // Generate a few stars (reduced count for sparsity)
+    const starsCount = 100;
     const starsGeo = new THREE.BufferGeometry();
     const positions = new Float32Array(starsCount * 3);
     for (let i = 0; i < starsCount; i++) {
       const i3 = i * 3;
       const v = new THREE.Vector3();
       v.setFromSphericalCoords(
-        8000 + Math.random() * 4000,
+        8000 + Math.random() * 4000, // Far away placement
         Math.acos(Math.random() * 2 - 1),
         2 * Math.PI * Math.random()
       );
@@ -98,6 +101,7 @@ const SkyManager = ({ scene, water }: SkyManagerProps) => {
     scene.add(stars);
     starsRef.current = stars;
 
+    // Cleanup function
     return () => {
       scene.remove(sky, moon, stars, sunMesh, ambientLight);
       starsGeo.dispose();
@@ -109,7 +113,7 @@ const SkyManager = ({ scene, water }: SkyManagerProps) => {
     };
   }, [scene]);
 
-  // --- Watch time ---
+  // Update active state based on current time every minute
   useEffect(() => {
     const updateTime = () => setActiveState(getStateForCurrentTime());
     updateTime();
@@ -117,7 +121,7 @@ const SkyManager = ({ scene, water }: SkyManagerProps) => {
     return () => clearInterval(id);
   }, []);
 
-  // --- Animation Loop ---
+  // Main animation loop for sky updates
   useEffect(() => {
     if (!scene || !skyRef.current || !sunRef.current || !water) return;
 
@@ -139,28 +143,28 @@ const SkyManager = ({ scene, water }: SkyManagerProps) => {
       let showMoon = false;
       let opacity = 0;
 
-      // --- MORNING ---
-      if (hour >= 8 && hour < 14) {
-        const t = (hour - 8) / (14 - 8);
-        elevation = lerp(15, 40, t);
-        sunColor.set(0xffffff);
-        skyColor.set(0x87ceeb);
+      // --- MORNING (8 AM - 12 PM): Bright sunshine with sun high in the sky ---
+      if (hour >= 8 && hour < 12) {
+        const t = (hour - 8) / (12 - 8); // Progress from 8 to 12
+        elevation = lerp(50, 80, t); // Sun rises to top of sky
+        sunColor.set(0xffffff); // Bright white sun
+        skyColor.set(0x87ceeb); // Clear blue sky
         uniforms['turbidity'].value = 8;
         uniforms['rayleigh'].value = 3;
 
         if (sunMesh) {
           const mat = sunMesh.material as THREE.MeshStandardMaterial;
-          mat.color.set(0xfff5d6);
-          mat.emissive.set(0xfff5b0);
-          mat.emissiveIntensity = 1.5;
+          mat.color.set(0xffffff);
+          mat.emissive.set(0xffffcc);
+          mat.emissiveIntensity = 2.0; // Strong glow for bright sunshine
           sunMesh.visible = true;
         }
       }
 
-      // --- EVENING (Visible Sunset) ---
-      else if (hour >= 14 && hour <= 21) {
-        const t = clamp((hour - 14) / (21 - 14), 0, 1);
-        elevation = lerp(35, -3, t);
+      // --- EVENING (12 PM - 6 PM): Complete orangish-red sky with gradual sunset ---
+      else if (hour >= 12 && hour < 18) {
+        const t = clamp((hour - 12) / (18 - 12), 0, 1); // Progress from 12 to 18
+        elevation = lerp(80, -10, t); // Sun sets gradually from high to horizon
 
         const c = new THREE.Color(0xffd080).lerp(new THREE.Color(0xff3300), t);
         sunColor.copy(c);
@@ -169,39 +173,38 @@ const SkyManager = ({ scene, water }: SkyManagerProps) => {
           const mat = sunMesh.material as THREE.MeshStandardMaterial;
           mat.color.copy(c);
           mat.emissive.copy(new THREE.Color(0xff6600).lerp(new THREE.Color(0xff2200), t));
-          mat.emissiveIntensity = lerp(1.5, 3.0, 1 - t);
+          mat.emissiveIntensity = lerp(2.0, 3.0, t); // Intensify glow as it sets
           sunMesh.visible = true;
         }
 
-        // Strong bright orangish-red full sky that dominates the scene
-        // Use vivid high-value orange-red and blend very little to darker tones so sky remains bright
-        const bright1 = new THREE.Color(0xff4500); // vivid orange-red
-        const bright2 = new THREE.Color(0xff3300); // intense red-orange
-        // bias t so early evening is already vivid and late evening stays saturated
-        const biasT = Math.min(1, t * 0.9 + 0.25);
-        const skyEvening = bright1.clone().lerp(bright2, biasT);
+        // Full orangish-red sky: Vivid, saturated color dominating the entire scene
+        const vividOrange = new THREE.Color(0xff4500); // Bright orange-red base
+        const deepRedOrange = new THREE.Color(0xcc2200); // Deeper red for late evening
+        const skyEvening = vividOrange.lerp(deepRedOrange, t * 0.8); // Bias to keep it bright and saturated
         skyColor.copy(skyEvening);
 
-        // Increase atmospheric scattering to enhance saturation across the sky
-        uniforms['turbidity'].value = 30;
-        uniforms['rayleigh'].value = 0.1;
-        if (uniforms['mieCoefficient']) uniforms['mieCoefficient'].value = 0.01;
+        // Enhance red atmospheric scattering for complete orangish-red effect
+        uniforms['turbidity'].value = 35; // High for red hues
+        uniforms['rayleigh'].value = 0.05; // Low for less blue scatter
+        if (uniforms['mieCoefficient']) uniforms['mieCoefficient'].value = 0.005; // Fine-tune haze
+        if (uniforms['mieDirectionalG']) uniforms['mieDirectionalG'].value = 0.8;
       }
 
-      // --- NIGHT ---
+      // --- NIGHT (6 PM - 8 AM): Dark sky with sparse stars and moon ---
       else {
-        elevation = -5;
+        elevation = -10; // Sun below horizon
         sunColor.set(0x000000);
-        skyColor.set(0x000000);
+        skyColor.set(0x000011); // Very dark blue-black for subtle depth
         showStars = true;
         showMoon = true;
         opacity = 1;
         uniforms['turbidity'].value = 2;
         uniforms['rayleigh'].value = 0.01;
+
         if (sunMesh) sunMesh.visible = false;
       }
 
-      // --- Apply Sun Movement ---
+      // Update sun position and uniforms
       const phi = THREE.MathUtils.degToRad(90 - elevation);
       const theta = THREE.MathUtils.degToRad(180);
       sun.setFromSphericalCoords(1, phi, theta);
@@ -209,22 +212,26 @@ const SkyManager = ({ scene, water }: SkyManagerProps) => {
       water.material.uniforms['sunDirection'].value.copy(sun).normalize();
       water.material.uniforms['sunColor'].value.copy(sunColor);
 
-      // Position visible sun mesh
+      // Position the visible sun mesh
       if (sunMesh) {
         const sunDistance = 7000;
-        sunMesh.position.set(Math.cos(theta) * sunDistance, Math.sin(phi) * sunDistance, 0);
+        sunMesh.position.set(
+          Math.cos(theta) * sunDistance,
+          Math.sin(phi) * sunDistance,
+          0
+        );
       }
 
-      // Background color
+      // Set scene background color
       scene.background = skyColor;
 
-      // Stars
+      // Update stars visibility and opacity
       if (stars) {
         stars.visible = showStars;
         (stars.material as THREE.PointsMaterial).opacity = opacity;
       }
 
-      // Moon
+      // Update moon visibility, opacity, and position (simple orbital path)
       if (moon) {
         moon.visible = showMoon;
         (moon.material as THREE.SpriteMaterial).opacity = opacity;
