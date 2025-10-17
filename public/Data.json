@@ -119,6 +119,32 @@
         "icon": "/icons/flag.webp"
       }
     ]
+  },
+  "challenges": {
+    "kraken": {
+      "domain": "Cryptography",
+      "title": "The Sunken Cipher",
+      "questionType": "text",
+      "questionContent": "Three pirates bury their treasure on an island. They have a map, but the location is encrypted with a strange cipher. The map reads: 'GSV XLIVZHHV KIRNV GRNV'. To find the treasure, you must decipher the message. The key is the captain's age, which is three. What is the location?",
+      "maxTries": 3,
+      "attachment": null
+    },
+    "shipwreck": {
+      "domain": "Forensics",
+      "title": "The Ghostly Galleon",
+      "questionType": "image",
+      "questionContent": "/questions/ship-map.png",
+      "maxTries": 3,
+      "attachment": "/attachments/logbook.txt"
+    },
+    "treasure": {
+      "domain": "Web Exploitation",
+      "title": "The Merchant's Ledger",
+      "questionType": "text",
+      "questionContent": "You've gained access to a merchant's online ledger. The page displays your current gold, but there's a rumor that a flaw in the system allows you to view anyone's balance by manipulating the URL. Find the hidden parameter that reveals the administrator's gold, which is the flag.",
+      "maxTries": 3,
+      "attachment": null
+    }
   }
 }
 
