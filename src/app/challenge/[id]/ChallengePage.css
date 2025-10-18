@@ -161,8 +161,8 @@
   font-weight: bold;
   color: #3a1c1a;
   text-align: center;
-  margin: 2% auto 1% auto;           /* augment change: moved title to the top by reducing top margin from 5% to 2% and bottom margin to 1% */
-  padding-top: 2%;                   /* augment change: reduced padding-top from 5% to 2% to move title higher */
+  margin: 5% auto 3% auto;           /* augment change: moved title down by increasing top margin to 5% and bottom margin to 3% for better spacing */
+  padding-top: 2%;                   /* augment change: kept padding-top at 2% for consistent spacing */
   background: transparent;           /* keep visual styling from your artwork; adjust if needed */
   pointer-events: none;
   z-index: 10;
@@ -171,9 +171,9 @@
   font-size: clamp(1.1rem, 1.8vw, 1.4rem);
   line-height: 1.7;
   margin-bottom: 2%;
-  margin-left: 0;                   /* augment change: centered question text by removing left margin */
-  margin-top: 1%;                   /* augment change: reduced top margin from 3% to 1% to bring question text closer to title */
-  white-space: normal;              /* wrap text normally */
+  margin-left: 0;                    /* augment change: centered question text by removing left margin */
+  margin-top: 1%;                    /* augment change: set top margin to 1% to position question above answer area */
+  white-space: normal;               /* wrap text normally */
   word-break: break-word;
 }
 .question-image {
@@ -186,37 +186,37 @@
 }
 .popup-question-content {
   display: block;
-  width: 80%;                       /* augment change: set width to 80% to properly align and display question content */
-  margin: 0 auto;                   /* augment change: centered the question content with auto margins */
+  width: 75%;                        /* augment change: reduced width from 80% to 75% to make question fit better with smaller left/right margins */
+  margin: 0 auto;                    /* augment change: centered the question content with auto margins (0 top/bottom, auto left/right) */
   box-sizing: border-box;
 }
 
 .popup-answer-area {
-  width: 100%;
+  width: 90%;                        /* augment change: reduced width from 100% to 90% to add left/right margins for better spacing */
   height: auto;
   background-image: url('/answer-box.svg');
   background-size: 100% 100%;
   background-repeat: no-repeat;
   padding: 20px 25px;
   display: flex;
-  left:10%;
+  margin: 0 auto;                    /* augment change: centered answer area with auto left/right margins */
   flex-direction: column;
   justify-content: space-between;
 }
 
 .popup-answer-textarea {
-  width: 68%;
+  width: 70%;                        /* augment change: reduced width from 68% to 70% for better fit with smaller margins */
   height: 60px;
   background: transparent;
   border: none;
   outline: none;
   resize: none;
   margin-top: 2%;
-  margin-left: 30%;
+  margin-left: 15%;                  /* augment change: reduced left margin from 30% to 15% to center textarea better */
   font-family: 'IM Fell English SC', serif;
   font-size: 1.5rem;
   color: #3a1c1a;
-  overflow:hidden;
+  overflow: hidden;
 }
 
 .popup-footer {
