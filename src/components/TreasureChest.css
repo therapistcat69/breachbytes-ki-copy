@@ -1,0 +1,132 @@
+/* Treasure Chest Wrapper - Bottom Left Position */
+.treasure-chest-wrapper {
+  position: fixed;
+  left: 24px;
+  bottom: 24px;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  pointer-events: auto;
+}
+
+/* Treasure Chest Button */
+.treasure-chest-button {
+  background: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Treasure Chest Image */
+.treasure-chest-image {
+  width: 120px;
+  height: auto;
+  user-select: none;
+  display: block;
+  filter: drop-shadow(0 6px 10px rgba(0, 0, 0, 0.25));
+  transition: transform 0.2s ease;
+}
+
+.treasure-chest-button:hover .treasure-chest-image {
+  transform: scale(1.05);
+}
+
+.treasure-chest-button:active .treasure-chest-image {
+  transform: scale(0.96);
+}
+
+/* Treasure Popup */
+.treasure-popup {
+  position: absolute;
+  bottom: 140px;
+  left: 0;
+  width: 300px;
+  max-width: min(92vw, 300px);
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+  padding: 12px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: stretch;
+  animation: popupSlideIn 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+@keyframes popupSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Treasure Popup Content */
+.treasure-popup-content {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* Treasure Popup Header */
+.treasure-popup-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Treasure Popup Points */
+.treasure-popup-points {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  color: #92400e;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+/* Sparkles Icon */
+.sparkles-icon {
+  font-size: 18px;
+  display: inline-block;
+}
+
+/* Treasure Popup Close Button */
+.treasure-popup-close {
+  background: transparent;
+  border: none;
+  padding: 6px;
+  cursor: pointer;
+  font-size: 20px;
+  color: #6b7280;
+  transition: color 0.2s ease;
+}
+
+.treasure-popup-close:hover {
+  color: #1f2937;
+}
+
+/* Treasure Popup Info */
+.treasure-popup-info {
+  color: #374151;
+  font-size: 13px;
+}
+
+.treasure-popup-label {
+  margin-bottom: 6px;
+  color: #6b7280;
+  font-size: 12px;
+}
+
+.treasure-popup-value {
+  font-weight: 600;
+  font-size: 15px;
+}
+
