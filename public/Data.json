@@ -8,8 +8,8 @@
     { "rank": 6, "name": "The Tidal Scourge", "score": 1150 },
     { "rank": 7, "name": "Neptune's Wrath", "score": 1040 },
     { "rank": 8, "name": "Siren's Song", "score": 980 },
-    { "rank": 9, "name": "The Crimson Armada", "score": 850 },
-    { "rank": 10, "name": "Ghostly Galleon", "score": 720 }
+    { "rank": 9, "name": "The Crimson Armada", "score": 850 }, 
+    { "rank": 10, "name": "Ghostly Galleon", "score": 720 } 
   ],
   "teamDetails": {
     "TeamName": "Team Alpha",
@@ -28,7 +28,7 @@
     "kraken": {
       "domain": "Cryptography",
       "title": "The Sunken Cipher",
-      "questionType": "text",
+      "questionType": "text", 
       "questionContent": "Three pirates bury their treasure on an island. They have a map, but the location is encrypted with a strange cipher. The map reads: 'GSV XLIVZHHV KIRNV GRNV'. To find the treasure, you must decipher the message. The key is the captain's age, which is three. What is the location?",
       "maxTries": 3,
       "attachment": "/attachments/logbook.txt"
