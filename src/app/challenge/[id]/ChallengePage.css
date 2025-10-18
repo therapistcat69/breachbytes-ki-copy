@@ -146,7 +146,7 @@
   -ms-overflow-style: none;         /* hide scrollbar in IE/Edge */
   scrollbar-width: none;            /* hide scrollbar in Firefox */
   padding: 12px 60px;               /* internal padding for the content */
-  margin: 8% 2% 2% 2%;              /* augment change: centered question area with balanced margins (top 8%, right 2%, bottom 2%, left 2%) */
+  margin: 5% 2% 2% 2%;              /* augment change: reduced top margin from 8% to 5% to show question properly */
   color: black;
   text-align: center;
   box-sizing: border-box;
@@ -154,7 +154,7 @@
   /* Constrain the height so content fits and scrolling remains inside this box.
      Use calc to subtract approximate heights of popup header/title/answer area/footer.
      Tune the 360px value to your design (padding + title + answer box + footer heights). */
-  max-height: calc(100vh - 360px);
+  max-height: calc(100vh - 300px);  /* augment change: increased max-height from 360px to 300px to show more question content */
 }
 .popup-title {
   font-size: clamp(1.8rem, 3vw, 2.5rem);
@@ -172,7 +172,7 @@
   line-height: 1.7;
   margin-bottom: 2%;
   margin-left: 0;                    /* augment change: centered question text by removing left margin */
-  margin-top: 1%;                    /* augment change: set top margin to 1% to position question above answer area */
+  margin-top: -0.5%;                 /* augment change: moved question text up very slightly by -0.5% (just a tiny bit above) */
   white-space: normal;               /* wrap text normally */
   word-break: break-word;
 }
