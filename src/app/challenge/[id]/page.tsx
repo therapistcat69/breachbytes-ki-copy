@@ -62,6 +62,18 @@ const ChallengePage = ({ params }: { params: { id: string } }) => {
       // Here you would add logic to check if the answer is correct
     }
   };
+
+  // Helper function to determine the CSS class for the tries counter
+  const getTriesCounterClass = () => {
+    if (!challenge) return '';
+    if (triesLeft === 0) {
+      return 'danger';
+    }
+    if (triesLeft < challenge.maxTries) {
+      return 'warning';
+    }
+    return ''; // Default class (green)
+  };
   
   const renderClickableChest = () => {
     if (isLoading) {
@@ -83,9 +95,7 @@ const ChallengePage = ({ params }: { params: { id: string } }) => {
   }
 
   return (
-    // This main container no longer gets blurred
     <div className="challenge-container">
-      {/* This new wrapper holds the content that WILL be blurred */}
       <div className={`background-content ${isPopupVisible ? 'content-blurred' : ''}`}>
         <Image 
           src="/top-view-map.svg" 
@@ -97,7 +107,6 @@ const ChallengePage = ({ params }: { params: { id: string } }) => {
         {renderClickableChest()}
       </div>
 
-      {/* The popup is now a sibling to the blurred content, not a child */}
       {isPopupVisible && challenge && (
         <div className="popup-overlay">
           <div className="popup-content">
@@ -106,22 +115,31 @@ const ChallengePage = ({ params }: { params: { id: string } }) => {
             </button>
             <div className="popup-header">
               <span className="domain-title">{challenge.domain}</span>
-              <span className="tries-counter">Tries Left: {triesLeft}</span>
+              <span className={`tries-counter ${getTriesCounterClass()}`}>
+                Attempts left: {triesLeft}/{challenge.maxTries}
+              </span>
             </div>
+            
+            <h2 className="popup-title">{challenge.title}</h2>
+
             <div className="popup-question-area">
-              <h2 className="popup-title">{challenge.title}</h2>
               {challenge.questionType === 'text' ? (
-                <p className="popup-question-text">{challenge.questionContent}</p>
+                <div className="popup-question-content">
+                  <p className="popup-question-text">{challenge.questionContent}</p>
+                </div>
               ) : (
-                <Image 
-                  src={challenge.questionContent} 
-                  alt="Challenge Image"
-                  width={400}
-                  height={300}
-                  className="question-image"
-                />
+                <div className="popup-question-content">
+                  <Image
+                    src={challenge.questionContent}
+                    alt="Challenge Image"
+                    width={400}
+                    height={300}
+                    className="question-image"
+                  />
+                </div>
               )}
             </div>
+
             <div className="popup-answer-area">
               <textarea 
                 placeholder="Your answer here, matey..."
@@ -131,16 +149,26 @@ const ChallengePage = ({ params }: { params: { id: string } }) => {
               />
               <div className="popup-footer">
                 {challenge.attachment && (
-                  <a href={challenge.attachment} download className="popup-attachment-button">
-                    Attachment
+                  <a
+                    href={challenge.attachment}
+                    download
+                    className="popup-attachment-button"
+                    aria-label="Download attachment"
+                  >
+                    <span className="btn-icon">📎</span>
+                    <span className="btn-label">Attachment</span>
                   </a>
                 )}
-                <button 
+
+                <button
                   className="popup-submit-button"
                   onClick={handleSubmit}
                   disabled={triesLeft === 0}
+                  aria-disabled={triesLeft === 0}
+                  aria-label="Submit answer"
                 >
-                  Submit
+                  <span className="btn-icon">✔</span>
+                  <span className="btn-label">Submit</span>
                 </button>
               </div>
             </div>
@@ -152,4 +180,3 @@ const ChallengePage = ({ params }: { params: { id: string } }) => {
 };
 
 export default ChallengePage;
-

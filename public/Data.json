@@ -1,123 +1,27 @@
 {
   "leaderboard": [
-    {
-      "rank": 1,
-      "name": "Blackpearl",
-      "score": 1850
-    },
-    {
-      "rank": 2,
-      "name": "Flying Dutchman",
-      "score": 1620
-    },
-    {
-      "rank": 3,
-      "name": "Kraken's Crew",
-      "score": 1490
-    },
-    {
-      "rank": 4,
-      "name": "The Sea Serpents",
-      "score": 1350
-    },
-    {
-      "rank": 5,
-      "name": "Calypso's Chosen",
-      "score": 1280
-    },
-    {
-      "rank": 6,
-      "name": "The Tidal Scourge",
-      "score": 1150
-    },
-    {
-      "rank": 7,
-      "name": "Neptune's Wrath",
-      "score": 1040
-    },
-    {
-      "rank": 8,
-      "name": "Siren's Song",
-      "score": 980
-    },
-    {
-      "rank": 9,
-      "name": "The Crimson Armada",
-      "score": 850
-    },
-    {
-      "rank": 10,
-      "name": "Ghostly Galleon",
-      "score": 720
-    }
+    { "rank": 1, "name": "Blackpearl", "score": 1850 },
+    { "rank": 2, "name": "Flying Dutchman", "score": 1620 },
+    { "rank": 3, "name": "Kraken's Crew", "score": 1490 },
+    { "rank": 4, "name": "The Sea Serpents", "score": 1350 },
+    { "rank": 5, "name": "Calypso's Chosen", "score": 1280 },
+    { "rank": 6, "name": "The Tidal Scourge", "score": 1150 },
+    { "rank": 7, "name": "Neptune's Wrath", "score": 1040 },
+    { "rank": 8, "name": "Siren's Song", "score": 980 },
+    { "rank": 9, "name": "The Crimson Armada", "score": 850 },
+    { "rank": 10, "name": "Ghostly Galleon", "score": 720 }
   ],
   "teamDetails": {
     "TeamName": "Team Alpha",
     "DomainWiseLeaderBoardData": [
-      {
-        "Domain": "Overall",
-        "Topper": 500,
-        "Individual": 280,
-        "color": "yellow",
-        "total": 700,
-        "icon": "/icons/crown.webp"
-      },
-      {
-        "Domain": "Domain 1",
-        "Topper": 20,
-        "Individual": 10,
-        "color": "yellow",
-        "total": 100,
-        "icon": "/icons/swords.png"
-      },
-      {
-        "Domain": "Domain 2",
-        "Topper": 30,
-        "Individual": 20,
-        "color": "pink",
-        "total": 100,
-        "icon": "/icons/flag.webp"
-      },
-      {
-        "Domain": "Domain 3",
-        "Topper": 40,
-        "Individual": 30,
-        "color": "purple",
-        "total": 100,
-        "icon": "/icons/hat.png"
-      },
-      {
-        "Domain": "Domain 4",
-        "Topper": 50,
-        "Individual": 40,
-        "color": "red",
-        "total": 100,
-        "icon": "/icons/flag.webp"
-      },
-      {
-        "Domain": "Domain 5",
-        "Topper": 60,
-        "Individual": 50,
-        "color": "green",
-        "total": 100,
-        "icon": "/icons/hat.png"
-      },
-      {
-        "Domain": "Domain 6",
-        "Topper": 70,
-        "Individual": 60,
-        "color": "orange",
-        "total": 100,
-        "icon": "/icons/swords.png"
-      },
-      {
-        "Domain": "Domain 7",
-        "Topper": 80,
-        "Individual": 70,
-        "color": "blue",
-        "total": 100,
-        "icon": "/icons/flag.webp"
-      }
+      { "Domain": "Overall", "Topper": 500, "Individual": 280, "color": "yellow", "total": 700, "icon": "/icons/crown.webp" },
+      { "Domain": "Domain 1", "Topper": 20, "Individual": 10, "color": "yellow", "total": 100, "icon": "/icons/swords.png" },
+      { "Domain": "Domain 2", "Topper": 30, "Individual": 20, "color": "pink", "total": 100, "icon": "/icons/flag.webp" },
+      { "Domain": "Domain 3", "Topper": 40, "Individual": 30, "color": "purple", "total": 100, "icon": "/icons/hat.png" },
+      { "Domain": "Domain 4", "Topper": 50, "Individual": 40, "color": "red", "total": 100, "icon": "/icons/flag.webp" },
+      { "Domain": "Domain 5", "Topper": 60, "Individual": 50, "color": "green", "total": 100, "icon": "/icons/hat.png" },
+      { "Domain": "Domain 6", "Topper": 70, "Individual": 60, "color": "orange", "total": 100, "icon": "/icons/swords.png" },
+      { "Domain": "Domain 7", "Topper": 80, "Individual": 70, "color": "blue", "total": 100, "icon": "/icons/flag.webp" }
     ]
   },
   "challenges": {
@@ -127,13 +31,13 @@
       "questionType": "text",
       "questionContent": "Three pirates bury their treasure on an island. They have a map, but the location is encrypted with a strange cipher. The map reads: 'GSV XLIVZHHV KIRNV GRNV'. To find the treasure, you must decipher the message. The key is the captain's age, which is three. What is the location?",
       "maxTries": 3,
-      "attachment": null
+      "attachment": "/attachments/logbook.txt"
     },
     "shipwreck": {
       "domain": "Forensics",
       "title": "The Ghostly Galleon",
-      "questionType": "image",
-      "questionContent": "/questions/ship-map.png",
+      "questionType": "text",
+      "questionContent": "We've recovered a water-logged logbook from a ghostly galleon that appeared off the coast. Most of the text is corrupted, but there's a strange sequence of characters hidden within the metadata of the document. Analyze the attached file to uncover the ship's secret name, which is the flag.",
       "maxTries": 3,
       "attachment": "/attachments/logbook.txt"
     },
@@ -141,10 +45,9 @@
       "domain": "Web Exploitation",
       "title": "The Merchant's Ledger",
       "questionType": "text",
-      "questionContent": "You've gained access to a merchant's online ledger. The page displays your current gold, but there's a rumor that a flaw in the system allows you to view anyone's balance by manipulating the URL. Find the hidden parameter that reveals the administrator's gold, which is the flag.",
+      "questionContent": "Ye've snuck a look at a port merchant's online ledger at 'merchant-of-seas.com/balance?user=13'. The page only shows yer own gold, but the old sea dogs whisper of a flaw. They say by tinkering with the URL, ye can spy on anyone's balance. Your mission is to find the parameter that reveals the administrator's vast fortune. The value of the administrator's gold is the flag! Hint: The admin is always user number 1.",
       "maxTries": 3,
-      "attachment": null
+      "attachment": "/attachments/logbook.txt"
     }
-  }
+  } 
 }
-
