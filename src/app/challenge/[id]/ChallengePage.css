@@ -146,7 +146,7 @@
   -ms-overflow-style: none;         /* hide scrollbar in IE/Edge */
   scrollbar-width: none;            /* hide scrollbar in Firefox */
   padding: 12px 60px;               /* internal padding for the content */
-  margin: 12% 2% 2% 10%;         /* keep some spacing from popup edges */
+  margin: 8% 2% 2% 2%;              /* keep some spacing from popup edges */
   color: black;
   text-align: center;
   box-sizing: border-box;
@@ -161,17 +161,17 @@
   font-weight: bold;
   color: #3a1c1a;
   text-align: center;
-  margin: 5% auto auto auto;
-  padding-top: 5%;
-   background: transparent;          /* keep visual styling from your artwork; adjust if needed */
-  pointer-events: none;    
+  margin: 2% auto 0 auto;
+  padding-top: 2%;
+  background: transparent;          /* keep visual styling from your artwork; adjust if needed */
+  pointer-events: none;
   z-index: 10;
 }
 .popup-question-text {
   font-size: clamp(1.1rem, 1.8vw, 1.4rem);
   line-height: 1.7;
-  margin-bottom:2%;
-  margin-left:15%;
+  margin-bottom: 2%;
+  margin-left: 0;
   white-space: normal; /* wrap text normally */
   word-break: break-word;
 }
@@ -197,7 +197,6 @@
   background-repeat: no-repeat;
   padding: 20px 25px;
   display: flex;
-  left:10%;
   flex-direction: column;
   justify-content: space-between;
 }
@@ -210,11 +209,11 @@
   outline: none;
   resize: none;
   margin-top: 2%;
-  margin-left: 30%;
+  margin-left: 16%;
   font-family: 'IM Fell English SC', serif;
   font-size: 1.5rem;
   color: #3a1c1a;
-  overflow:hidden;
+  overflow: hidden;
 }
 
 .popup-footer {
