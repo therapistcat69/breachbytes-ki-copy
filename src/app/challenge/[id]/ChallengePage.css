@@ -146,7 +146,7 @@
   -ms-overflow-style: none;         /* hide scrollbar in IE/Edge */
   scrollbar-width: none;            /* hide scrollbar in Firefox */
   padding: 12px 60px;               /* internal padding for the content */
-  margin: 12% 2% 2% 15%;            /* augment change: moved question area to the right by increasing left margin from 10% to 15% */
+  margin: 8% 2% 2% 2%;              /* augment change: centered question area with balanced margins (top 8%, right 2%, bottom 2%, left 2%) */
   color: black;
   text-align: center;
   box-sizing: border-box;
@@ -161,18 +161,18 @@
   font-weight: bold;
   color: #3a1c1a;
   text-align: center;
-  margin: 5% auto auto auto;
-  padding-top: 5%;
-   background: transparent;          /* keep visual styling from your artwork; adjust if needed */
-  pointer-events: none;    
+  margin: 2% auto 1% auto;           /* augment change: moved title to the top by reducing top margin from 5% to 2% and bottom margin to 1% */
+  padding-top: 2%;                   /* augment change: reduced padding-top from 5% to 2% to move title higher */
+  background: transparent;           /* keep visual styling from your artwork; adjust if needed */
+  pointer-events: none;
   z-index: 10;
 }
 .popup-question-text {
   font-size: clamp(1.1rem, 1.8vw, 1.4rem);
   line-height: 1.7;
   margin-bottom: 2%;
-  margin-left: 0;                   /* augment change: moved question text (sunken cipher) down by adding margin-top and centered it */
-  margin-top: 3%;                   /* augment change: added top margin to move text down */
+  margin-left: 0;                   /* augment change: centered question text by removing left margin */
+  margin-top: 1%;                   /* augment change: reduced top margin from 3% to 1% to bring question text closer to title */
   white-space: normal;              /* wrap text normally */
   word-break: break-word;
 }
@@ -186,7 +186,8 @@
 }
 .popup-question-content {
   display: block;
-  width: 100%;
+  width: 80%;                       /* augment change: set width to 80% to properly align and display question content */
+  margin: 0 auto;                   /* augment change: centered the question content with auto margins */
   box-sizing: border-box;
 }
 
