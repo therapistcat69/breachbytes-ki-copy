@@ -1,5 +1,3 @@
-
-
 .challenge-container {
   width: 100vw;
   height: 100vh;
@@ -63,7 +61,15 @@
   justify-content: space-between;
   padding: 4% 5%;
   font-family: 'IM Fell English SC', serif;
-  color: #3a1c1a;
+  color: #111827; /* slightly more black than previous #3a1c1a */
+}
+
+/* ensure question/labels/status use the same darker tone */
+.popup-question-text,
+.domain-title,
+.challenge-status-indicator,
+.popup-title {
+  color: #111827;
 }
 
 .popup-close-button {
@@ -103,15 +109,19 @@
 }
 
 .domain-title {
+  position: relative; /* allow z-index stacking */
+  z-index: 5;
   font-size: clamp(1.2rem, 2.5vw, 1.8rem);
   font-weight: bold;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   padding: 10px 20px;
-  margin-top: 1%;
-  margin-left: 23%;
-  color: #ffffff;
+  margin-top: 3.5%;
+  margin-left: 0;
+  margin-right: 0;
+  margin-inline: auto;
+  color: #111827;
   background: linear-gradient(135deg, #ff7b00, #ffb347);
   border-radius: 50px;
   box-shadow: 0 4px 15px rgba(255, 140, 0, 0.5);
@@ -125,57 +135,70 @@
   box-shadow: 0 6px 20px rgba(255, 160, 0, 0.7);
 }
 
-
 .tries-counter {
   font-size: clamp(1rem, 2vw, 1.2rem);
   padding: 16px 20px;
   border-radius: 50%;
   font-weight: bold;
   color: white;
-  margin-right:22%;
-  background-color: #b71c1c;  /* default red for 0/3 */
+  margin-right: 22%;
+  background-color: #b71c1c; /* default red for 0/3 */
   border: 2px solid #fff3e0;
   transition: background-color 0.3s ease;
 }
+
 .tries-counter.success {
   background-color: #2e7d32;
 }
 
 .popup-question-area {
-  overflow-y: auto;                 /* enable scrolling for the content */
-  -ms-overflow-style: none;         /* hide scrollbar in IE/Edge */
-  scrollbar-width: none;            /* hide scrollbar in Firefox */
-  padding: 12px 60px;               /* internal padding for the content */
-  margin: 5% 2% 2% 2%;              /* augment change: reduced top margin from 8% to 5% to show question properly */
-  color: black;
+  overflow-y: auto;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  padding: 12px 40px;
+  margin: 3% 2% 2% 2%;
   text-align: center;
   box-sizing: border-box;
+  max-height: calc(100vh - 300px);
 
-  /* Constrain the height so content fits and scrolling remains inside this box.
-     Use calc to subtract approximate heights of popup header/title/answer area/footer.
-     Tune the 360px value to your design (padding + title + answer box + footer heights). */
-  max-height: calc(100vh - 300px);  /* augment change: increased max-height from 360px to 300px to show more question content */
+  /* restore sensible top spacing so question is visible */
+  padding-top: 12px;
 }
+
+.popup-question-content {
+  position: relative;
+  z-index: 10; /* ensure question content sits above the topic */
+  display: block;
+  width: 60%;
+  max-width: 780px;
+  /* moderate upward shift so question is clearly above topic but not hidden */
+  margin: -12px auto 18px auto; /* reduced from -50px */
+  box-sizing: border-box;
+  transform: none;
+}
+
 .popup-title {
   font-size: clamp(1.8rem, 3vw, 2.5rem);
   font-weight: bold;
   color: #3a1c1a;
   text-align: center;
-  margin: 5% auto 3% auto;           /* augment change: moved title down by increasing top margin to 5% and bottom margin to 3% for better spacing */
-  padding-top: 2%;                   /* augment change: kept padding-top at 2% for consistent spacing */
-  background: transparent;           /* keep visual styling from your artwork; adjust if needed */
+  margin: 2% auto 2% auto;
+  padding-top: 2%;
+  background: transparent;
   pointer-events: none;
   z-index: 10;
 }
+
 .popup-question-text {
   font-size: clamp(1.1rem, 1.8vw, 1.4rem);
-  line-height: 1.7;
+  line-height: 2.1; /* increased for better readability */
   margin-bottom: 2%;
-  margin-left: 0;                    /* augment change: centered question text by removing left margin */
-  margin-top: -0.5%;                 /* augment change: moved question text up very slightly by -0.5% (just a tiny bit above) */
-  white-space: normal;               /* wrap text normally */
+  margin-left: 0;
+  margin-top: 0;
+  white-space: normal;
   word-break: break-word;
 }
+
 .question-image {
   max-width: 100%;
   height: auto;
@@ -184,35 +207,30 @@
   display: block;
   margin: 12px auto;
 }
-.popup-question-content {
-  display: block;
-  width: 75%;                        /* augment change: reduced width from 80% to 75% to make question fit better with smaller left/right margins */
-  margin: 0 auto;                    /* augment change: centered the question content with auto margins (0 top/bottom, auto left/right) */
-  box-sizing: border-box;
-}
 
 .popup-answer-area {
-  width: 90%;                        /* augment change: reduced width from 100% to 90% to add left/right margins for better spacing */
+  width: 72%;
+  margin: 0 10% 0 16%; /* left reduced from 20% to 16% to shift left */
   height: auto;
   background-image: url('/answer-box.svg');
   background-size: 100% 100%;
   background-repeat: no-repeat;
   padding: 20px 25px;
   display: flex;
-  margin: 0 auto;                    /* augment change: centered answer area with auto left/right margins */
   flex-direction: column;
   justify-content: space-between;
+  box-sizing: border-box;
 }
 
 .popup-answer-textarea {
-  width: 70%;                        /* augment change: reduced width from 68% to 70% for better fit with smaller margins */
+  width: 70%;
   height: 60px;
   background: transparent;
   border: none;
   outline: none;
   resize: none;
   margin-top: 2%;
-  margin-left: 15%;                  /* augment change: reduced left margin from 30% to 15% to center textarea better */
+  margin-left: 15%;
   font-family: 'IM Fell English SC', serif;
   font-size: 1.5rem;
   color: #3a1c1a;
@@ -221,7 +239,7 @@
 
 .popup-footer {
   position: absolute;
-  bottom: 20px;  /* Changed from 10px to 0px to shift it all the way down */
+  bottom: 20px;
   left: 0;
   right: 0;
   display: flex;
@@ -252,21 +270,22 @@
   letter-spacing: 0.4px;
   color: #fff;
 }
+
 .popup-attachment-button {
   background: linear-gradient(180deg, #c07b41 0%, #8b4513 60%, #5c2f15 100%);
   border: 1px solid rgba(255, 255, 255, 0.06);
   text-shadow: 0 1px 0 rgba(0,0,0,0.35);
 }
+
 .popup-attachment-button:hover {
   background: linear-gradient(180deg, #8B4513 0%, #8b4513e5 100%);
   color: white;
   border: 1px solid #C8E6C9;
-}
-.popup-attachment-button:hover {
   transform: translateY(-2px) scale(1.02);
   box-shadow: 0 8px 30px rgba(107,58,27,0.35);
   filter: saturate(1.06);
 }
+
 .popup-attachment-button:active {
   transform: translateY(0) scale(0.997);
   box-shadow: 0 8px 18px rgba(0,0,0,0.35);
@@ -278,11 +297,13 @@
   border: 1px solid rgba(200, 255, 220, 0.12);
   text-shadow: 0 1px 0 rgba(0,0,0,0.45);
 }
+
 .popup-submit-button:hover {
   transform: translateY(-2px) scale(1.02);
   box-shadow: 0 14px 30px rgba(46,125,50,0.32);
   filter: brightness(1.03);
 }
+
 .popup-submit-button:active {
   transform: translateY(0) scale(0.997);
   box-shadow: 0 8px 18px rgba(0,0,0,0.28);
@@ -300,6 +321,7 @@
   color: #dedede;
   border: 1px solid rgba(0,0,0,0.12);
 }
+
 .popup-attachment-button > .btn-icon,
 .popup-submit-button > .btn-icon {
   display: inline-flex;
@@ -314,6 +336,7 @@
   font-size: 0.95rem;
   box-shadow: 0 1px 0 rgba(0,0,0,0.25) inset;
 }
+
 .popup-attachment-button:focus,
 .popup-submit-button:focus {
   outline: none;
@@ -357,9 +380,9 @@
   color: #8b0000;
 }
 
-/* NEW: Custom scrollbar for the answer text area */
+/* Custom scrollbar for the answer text area */
 .popup-answer-textarea::-webkit-scrollbar {
-  display:none;
+  display: none;
 }
 .popup-answer-textarea::-webkit-scrollbar-track {
   background: rgba(0, 0, 0, 0.1);
